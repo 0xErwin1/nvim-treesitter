@@ -11,9 +11,7 @@ for ft, lang in pairs {
   ["typescript.tsx"] = "tsx",
   ["terraform-vars"] = "terraform",
   ["html.handlebars"] = "glimmer",
-  pandoc = "markdown",
-  rmd = "markdown",
-  quarto = "markdown",
+  systemverilog = "verilog",
   dosini = "ini",
   confini = "ini",
   svg = "xml",
@@ -23,6 +21,7 @@ for ft, lang in pairs {
   mysql = "sql",
   sbt = "scala",
   neomuttrc = "muttrc",
+  clientscript = "runescript",
   --- short-hand list from https://github.com/helix-editor/helix/blob/master/languages.toml
   rs = "rust",
   ex = "elixir",
@@ -61,7 +60,9 @@ end
 local list = setmetatable({}, {
   __newindex = function(table, parsername, parserconfig)
     rawset(table, parsername, parserconfig)
-    ts.language.register(parsername, parserconfig.filetype or parsername)
+    if parserconfig.filetype or vim.fn.has "nvim-0.11" == 0 then
+      ts.language.register(parsername, parserconfig.filetype or parsername)
+    end
   end,
 })
 
@@ -288,6 +289,7 @@ list.cooklang = {
     files = { "src/parser.c", "src/scanner.c" },
   },
   maintainers = { "@addcninblue" },
+  filetype = "cook",
 }
 
 list.corn = {
@@ -349,6 +351,14 @@ list.cue = {
   maintainers = { "@amaanq" },
 }
 
+list.cylc = {
+  install_info = {
+    url = "https://github.com/elliotfontaine/tree-sitter-cylc",
+    files = { "src/parser.c" },
+  },
+  maintainers = { "@elliotfontaine" },
+}
+
 list.d = {
   install_info = {
     url = "https://github.com/gdamore/tree-sitter-d",
@@ -363,6 +373,14 @@ list.dart = {
     files = { "src/parser.c", "src/scanner.c" },
   },
   maintainers = { "@akinsho" },
+}
+
+list.desktop = {
+  install_info = {
+    url = "https://github.com/ValdezFOmar/tree-sitter-desktop",
+    files = { "src/parser.c" },
+  },
+  maintainers = { "@ValdezFOmar" },
 }
 
 list.devicetree = {
@@ -617,6 +635,15 @@ list.fsh = {
   maintainers = { "@mgramigna" },
 }
 
+list.fsharp = {
+  install_info = {
+    url = "https://github.com/ionide/tree-sitter-fsharp",
+    files = { "src/parser.c", "src/scanner.c" },
+    location = "fsharp",
+  },
+  maintainers = { "@nsidorenco" },
+}
+
 list.func = {
   install_info = {
     url = "https://github.com/amaanq/tree-sitter-func",
@@ -840,6 +867,14 @@ list.gpg = {
     files = { "src/parser.c" },
   },
   maintainers = { "@ObserverOfTime" },
+}
+
+list.gren = {
+  install_info = {
+    files = { "src/parser.c", "src/scanner.c" },
+    url = "https://github.com/MaeBrooks/tree-sitter-gren",
+  },
+  maintainers = { "@MaeBrooks" },
 }
 
 list.groovy = {
@@ -1114,7 +1149,6 @@ list.julia = {
     url = "https://github.com/tree-sitter/tree-sitter-julia",
     files = { "src/parser.c", "src/scanner.c" },
   },
-  maintainers = { "@theHamsta" },
 }
 
 list.just = {
@@ -1433,6 +1467,14 @@ list.nqc = {
     files = { "src/parser.c" },
   },
   maintainers = { "@amaanq" },
+}
+
+list.nu = {
+  install_info = {
+    url = "https://github.com/nushell/tree-sitter-nu",
+    files = { "src/parser.c" },
+  },
+  maintainers = { "@abhisheksingh0x558" },
 }
 
 list.objc = {
@@ -1906,6 +1948,14 @@ list.ruby = {
   maintainers = { "@TravonteD" },
 }
 
+list.runescript = {
+  install_info = {
+    url = "https://github.com/2004Scape/tree-sitter-runescript",
+    files = { "src/parser.c", "src/scanner.c" },
+  },
+  maintainers = { "@2004Scape" },
+}
+
 list.rust = {
   install_info = {
     url = "https://github.com/tree-sitter/tree-sitter-rust",
@@ -2101,6 +2151,18 @@ list.supercollider = {
   maintainers = { "@madskjeldgaard" },
 }
 
+list.superhtml = {
+  install_info = {
+    url = "https://github.com/kristoff-it/superhtml",
+    files = {
+      "src/parser.c",
+      "src/scanner.c",
+    },
+    location = "tree-sitter-superhtml",
+  },
+  maintainers = { "@rockorager" },
+}
+
 list.surface = {
   install_info = {
     url = "https://github.com/connorlay/tree-sitter-surface",
@@ -2116,6 +2178,14 @@ list.svelte = {
     files = { "src/parser.c", "src/scanner.c" },
   },
   maintainers = { "@amaanq" },
+}
+
+list.sway = {
+  install_info = {
+    url = "https://github.com/FuelLabs/tree-sitter-sway.git",
+    files = { "src/parser.c", "src/scanner.c" },
+  },
+  maintainers = { "@ribru17" },
 }
 
 list.swift = {
@@ -2141,14 +2211,6 @@ list.systemtap = {
     files = { "src/parser.c" },
   },
   maintainers = { "@ok-ryoko" },
-}
-
-list.systemverilog = {
-  install_info = {
-    url = "https://github.com/zhangwwpeng/tree-sitter-systemverilog",
-    files = { "src/parser.c" },
-  },
-  maintainers = { "@zhangwwpeng" },
 }
 
 list.t32 = {
@@ -2405,10 +2467,10 @@ list.vento = {
 
 list.verilog = {
   install_info = {
-    url = "https://github.com/tree-sitter/tree-sitter-verilog",
+    url = "https://github.com/gmlarumbe/tree-sitter-systemverilog",
     files = { "src/parser.c" },
   },
-  maintainers = { "@zegervdv" },
+  maintainers = { "@zhangwwpeng" },
 }
 
 list.vhdl = {
@@ -2512,6 +2574,15 @@ list.xml = {
   maintainers = { "@ObserverOfTime" },
 }
 
+list.xresources = {
+  install_info = {
+    url = "https://github.com/ValdezFOmar/tree-sitter-xresources",
+    files = { "src/parser.c" },
+  },
+  filetype = "xdefaults",
+  maintainers = { "@ValdezFOmar" },
+}
+
 list.yaml = {
   install_info = {
     url = "https://github.com/tree-sitter-grammars/tree-sitter-yaml",
@@ -2550,6 +2621,24 @@ list.zig = {
     files = { "src/parser.c" },
   },
   maintainers = { "@amaanq" },
+}
+
+list.ziggy = {
+  install_info = {
+    url = "https://github.com/kristoff-it/ziggy",
+    files = { "src/parser.c" },
+    location = "tree-sitter-ziggy",
+  },
+  maintainers = { "@rockorager" },
+}
+
+list.ziggy_schema = {
+  install_info = {
+    url = "https://github.com/kristoff-it/ziggy",
+    files = { "src/parser.c" },
+    location = "tree-sitter-ziggy-schema",
+  },
+  maintainers = { "@rockorager" },
 }
 
 list.templ = {
