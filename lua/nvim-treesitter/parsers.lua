@@ -249,6 +249,14 @@ list.chatito = {
   maintainers = { "@ObserverOfTime" },
 }
 
+list.circom = {
+  install_info = {
+    url = "https://github.com/Decurity/tree-sitter-circom",
+    files = { "src/parser.c" },
+  },
+  maintainers = { "@alexandr-martirosyan" },
+}
+
 list.clojure = {
   install_info = {
     url = "https://github.com/sogaiu/tree-sitter-clojure",
@@ -1043,6 +1051,15 @@ list.idl = {
   maintainers = { "@cathaysia" },
 }
 
+list.idris = {
+  install_info = {
+    url = "https://github.com/kayhide/tree-sitter-idris",
+    files = { "src/parser.c", "src/scanner.c" },
+  },
+  filetype = "idris2",
+  maintainers = { "@srghma" },
+}
+
 list.ini = {
   install_info = {
     url = "https://github.com/justinmk/tree-sitter-ini",
@@ -1058,6 +1075,14 @@ list.inko = {
     files = { "src/parser.c" },
   },
   maintainers = { "@yorickpeterse" },
+}
+
+list.ipkg = {
+  install_info = {
+    url = "https://github.com/srghma/tree-sitter-ipkg",
+    files = { "src/parser.c", "src/scanner.c" },
+  },
+  maintainers = { "@srghma" },
 }
 
 list.ispc = {
@@ -1149,6 +1174,7 @@ list.julia = {
     url = "https://github.com/tree-sitter/tree-sitter-julia",
     files = { "src/parser.c", "src/scanner.c" },
   },
+  maintainers = { "@fredrikekre" },
 }
 
 list.just = {
@@ -1472,7 +1498,7 @@ list.nqc = {
 list.nu = {
   install_info = {
     url = "https://github.com/nushell/tree-sitter-nu",
-    files = { "src/parser.c" },
+    files = { "src/parser.c", "src/scanner.c" },
   },
   maintainers = { "@abhisheksingh0x558" },
 }
